@@ -2,6 +2,12 @@
 
 
 [[projects]]
+  name = "github.com/BurntSushi/toml"
+  packages = ["."]
+  revision = "b26d9c308763d68093482582cea63d69be07a0f0"
+  version = "v0.3.0"
+
+[[projects]]
   name = "gopkg.in/urfave/cli.v1"
   packages = ["."]
   revision = "cfb38830724cc34fedffe9a2a29fb54fa9169cd1"
@@ -10,6 +16,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "31a875231f3ca87038f250aaf7575aad37b2ec5481e318e1071bff16b72d8182"
+  inputs-digest = "c7dcad9e38fec2c5e169d211e3d7a58dee50db154c1665d2b04cffc7dd4e2da9"
   solver-name = "gps-cdcl"
   solver-version = 1
