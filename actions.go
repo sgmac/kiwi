@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"text/tabwriter"
 
 	"github.com/Sirupsen/logrus"
 	"github.com/sgmac/bandwagon"
@@ -36,23 +35,34 @@ func listimages(c *cli.Context) error {
 	return nil
 }
 
+func info(c *cli.Context) error {
+	info, err := client.Info()
+	if err != nil {
+		logrus.Fatalf("info-%s\n", err)
+	}
+	prettyOutput(info)
+	return nil
+}
+
 func prettyOutput(v interface{}) {
-	w := tabwriter.NewWriter(os.Stdout, 40, 8, 0, ' ', 0)
 	var header string
 
-	switch v {
-	case v.(*bandwagon.Images):
+	switch t := v.(type) {
+
+	case *bandwagon.Images:
 		imgs := v.(*bandwagon.Images)
 		header = "IMAGE"
-		fmt.Fprintf(w, "%s\n", header)
+		fmt.Fprintf(os.Stdout, "%s\n", header)
 		for _, img := range imgs.Templates {
-			fmt.Fprintf(w, "%s\n", img)
+			fmt.Fprintf(os.Stdout, "%s\n", img)
 		}
 
+	case *bandwagon.InfoVPS:
+		info := v.(*bandwagon.InfoVPS)
+		header = "VIRTUALIZATION\tHOSTNAME\tOS\t\t\t\tIP"
+		fmt.Fprintf(os.Stdout, "%s\n", header)
+		fmt.Fprintf(os.Stdout, "%s\t\t%s\t\t%s\t\t%s\n", info.VMType, info.Hostname, info.OS, info.IPAddresses)
 	default:
-	case v.(*bandwagon.InfoVPS):
-		fmt.Fprintf(w, "images %v", v)
+		_ = t
 	}
-
-	w.Flush()
 }

@@ -12,5 +12,11 @@ func commands() []cli.Command {
 			Usage:   "List available images.",
 			Action:  listimages,
 		},
+		{
+			Name:    "info",
+			Aliases: []string{"f"},
+			Usage:   "List info about the working VPS.",
+			Action:  info,
+		},
 	}
 }
