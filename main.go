@@ -12,5 +12,6 @@ func main() {
 	app := cli.NewApp()
 	app.Name = "kiwi"
 	app.Usage = Usage
+	app.Commands = commands()
 	app.Run(os.Args)
 }

@@ -8,6 +8,30 @@
   version = "v0.3.0"
 
 [[projects]]
+  name = "github.com/Sirupsen/logrus"
+  packages = ["."]
+  revision = "f006c2ac4710855cf0f916dd6b77acf6b048dc6e"
+  version = "v1.0.3"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/sgmac/bandwagon"
+  packages = ["."]
+  revision = "1252c82baeb0235e2405b439b888a750e77efc85"
+
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/crypto"
+  packages = ["ssh/terminal"]
+  revision = "9f005a07e0d31d45e6656d241bb5c0f2efd4bc94"
+
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/sys"
+  packages = ["unix","windows"]
+  revision = "0ac51a24ef1c37380f98ba8b98f56e3bffd59850"
+
+[[projects]]
   name = "gopkg.in/urfave/cli.v1"
   packages = ["."]
   revision = "cfb38830724cc34fedffe9a2a29fb54fa9169cd1"
@@ -16,6 +40,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "c7dcad9e38fec2c5e169d211e3d7a58dee50db154c1665d2b04cffc7dd4e2da9"
+  inputs-digest = "71881ddce8b2e79474d7dbfdccd4260529791758184679601f1e6f917b1d01eb"
   solver-name = "gps-cdcl"
   solver-version = 1
