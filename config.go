@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 
@@ -17,9 +18,10 @@ var (
 	appPath = filepath.Join(os.Getenv("HOME"), ".kiwi")
 )
 
-type tomlConfig struct {
+type configServ struct {
 	VPS serverInfo
 }
+
 type serverInfo struct {
 	VeID   string
 	APIKey string
@@ -36,20 +38,32 @@ func configPath() error {
 	return nil
 }
 
-func readConfig() error {
+func readConfig() (*configServ, error) {
 	config := filepath.Join(appPath, filename)
+	var server *configServ
 	if _, err := os.Stat(config); os.IsNotExist(err) {
 		f, err := os.Create(config)
 		if err != nil {
-			return err
+			return nil, err
 		}
 
-		server := tomlConfig{}
+		server = &configServ{}
 		tml := toml.NewEncoder(f)
 		err = tml.Encode(server)
 		if err != nil {
-			return err
+			return nil, err
 		}
 	}
-	return nil
+
+	data, err := ioutil.ReadFile(config)
+	if err != nil {
+		return nil, err
+	}
+
+	err = toml.Unmarshal(data, &server)
+	if err != nil {
+		return nil, err
+	}
+
+	return server, nil
 }
