@@ -14,10 +14,10 @@
   version = "v1.0.3"
 
 [[projects]]
-  branch = "master"
   name = "github.com/sgmac/bandwagon"
   packages = ["."]
-  revision = "1252c82baeb0235e2405b439b888a750e77efc85"
+  revision = "910507b8152815a36c83c71784a35b78e04f3d51"
+  version = "v0.1.0"
 
 [[projects]]
   branch = "master"
@@ -29,7 +29,7 @@
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix","windows"]
-  revision = "0ac51a24ef1c37380f98ba8b98f56e3bffd59850"
+  revision = "82aafbf43bf885069dc71b7e7c2f9d7a614d47da"
 
 [[projects]]
   name = "gopkg.in/urfave/cli.v1"
