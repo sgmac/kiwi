@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"os"
 
@@ -44,6 +45,91 @@ func info(c *cli.Context) error {
 	return nil
 }
 
+func stop(c *cli.Context) error {
+	resp, err := client.Stop()
+	if err != nil {
+		logrus.Fatalf("stop-%s\n", err)
+	}
+
+	switch resp.Error {
+	case 0:
+		prettylines(os.Stdout, "OK")
+	default:
+		prettylines(os.Stdout, "NOK")
+
+	}
+	return nil
+}
+
+func start(c *cli.Context) error {
+	resp, err := client.Start()
+	if err != nil {
+		logrus.Fatalf("start-%s\n", err)
+	}
+
+	switch resp.Error {
+	case 0:
+		prettylines(os.Stdout, "OK")
+	default:
+		prettylines(os.Stderr, "NOK")
+
+	}
+	return nil
+}
+
+func kill(c *cli.Context) error {
+	resp, err := client.Kill()
+	if err != nil {
+		logrus.Fatalf("kill-%s\n", err)
+	}
+
+	switch resp.Error {
+	case 0:
+		prettylines(os.Stdout, "OK")
+	default:
+		prettylines(os.Stderr, "NOK")
+	}
+	return nil
+}
+
+func reboot(c *cli.Context) error {
+	resp, err := client.Reboot()
+	if err != nil {
+		logrus.Fatalf("reboot-%s\n", err)
+	}
+
+	switch resp.Error {
+	case 0:
+		prettylines(os.Stdout, "OK")
+	default:
+		prettylines(os.Stderr, "NOK")
+	}
+	return nil
+}
+
+func hostname(c *cli.Context) error {
+	var host string
+	if c.NArg() < 1 {
+		prettylines(os.Stderr, "Provide a hostname.")
+		return nil
+	}
+	host = c.Args().Get(0)
+
+	resp, err := client.Hostname(host)
+	if err != nil {
+		logrus.Fatalf("hostname-%s\n", err)
+	}
+
+	switch resp.Error {
+	case 0:
+		prettylines(os.Stdout, "OK")
+	default:
+		prettylines(os.Stderr, "NOK")
+
+	}
+	return nil
+}
+
 func prettyOutput(v interface{}) {
 	var header string
 
@@ -65,4 +151,8 @@ func prettyOutput(v interface{}) {
 	default:
 		_ = t
 	}
+}
+
+func prettylines(w io.Writer, msg string) {
+	fmt.Fprintf(w, "%s\n", msg)
 }

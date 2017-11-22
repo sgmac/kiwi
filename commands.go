@@ -9,14 +9,44 @@ func commands() []cli.Command {
 		{
 			Name:    "images",
 			Aliases: []string{"i"},
-			Usage:   "List available images.",
+			Usage:   "List OS images.",
 			Action:  listimages,
 		},
 		{
-			Name:    "info",
+			Name:    "status",
 			Aliases: []string{"f"},
-			Usage:   "List info about the working VPS.",
+			Usage:   "Status VPS.",
 			Action:  info,
+		},
+		{
+			Name:    "start",
+			Aliases: []string{"s"},
+			Usage:   "Start VPS.",
+			Action:  start,
+		},
+		{
+			Name:    "stop",
+			Aliases: []string{"t"},
+			Usage:   "Stop VPS.",
+			Action:  stop,
+		},
+		{
+			Name:    "kill",
+			Aliases: []string{"t"},
+			Usage:   "Kill VPS.",
+			Action:  kill,
+		},
+		{
+			Name:    "reboot",
+			Aliases: []string{"t"},
+			Usage:   "Reboot VPS.",
+			Action:  reboot,
+		},
+		{
+			Name:    "hostname",
+			Aliases: []string{"t"},
+			Usage:   "Set hostname.",
+			Action:  hostname,
 		},
 	}
 }
