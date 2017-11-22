@@ -48,5 +48,11 @@ func commands() []cli.Command {
 			Usage:   "Set hostname.",
 			Action:  hostname,
 		},
+		{
+			Name:    "install",
+			Aliases: []string{"t"},
+			Usage:   "Install OS.",
+			Action:  install,
+		},
 	}
 }

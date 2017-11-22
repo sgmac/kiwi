@@ -125,8 +125,32 @@ func hostname(c *cli.Context) error {
 		prettylines(os.Stdout, "OK")
 	default:
 		prettylines(os.Stderr, "NOK")
-
 	}
+	return nil
+}
+
+func install(c *cli.Context) error {
+	var base string
+	if c.NArg() < 1 {
+		prettylines(os.Stderr, "Provide an OS.")
+		return nil
+	}
+	base = c.Args().Get(0)
+
+	resp, err := client.Install(base)
+	if err != nil {
+		logrus.Fatalf("install-%s\n", err)
+	}
+
+	if err != nil {
+		logrus.Fatalf("install-err: %s\n", err)
+	}
+
+	out := fmt.Sprintf("%s", resp.AdditionalErrorInfo)
+	if resp.Error < 1 {
+		out = fmt.Sprintf("SSHPort: %d\nRootPassword: %s", resp.SSHPort, resp.RootPassword)
+	}
+	fmt.Println(out)
 	return nil
 }
 
