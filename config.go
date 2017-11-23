@@ -42,6 +42,11 @@ func readConfig() (*configServ, error) {
 	config := filepath.Join(appPath, filename)
 	var server *configServ
 	if _, err := os.Stat(config); os.IsNotExist(err) {
+		err := configPath()
+		if err != nil {
+			return nil, err
+		}
+
 		f, err := os.Create(config)
 		if err != nil {
 			return nil, err
