@@ -41,9 +41,9 @@ COMMANDS:
      status, f    Status VPS.
      start, s     Start VPS.
      stop, t      Stop VPS.
-     kill, t      Kill VPS.
-     reboot, t    Reboot VPS.
-     hostname, t  Set hostname.
-     install, t   Install OS.
-
+     kill, k      Kill VPS.
+     reboot, r    Reboot VPS.
+     hostname, h  Set hostname.
+     install, l   Install OS.
+     help, h      Shows a list of commands or help for one command
 ```
