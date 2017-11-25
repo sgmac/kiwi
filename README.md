@@ -9,7 +9,7 @@ This API doesn't have much sense, you need a VeID and PrivateKey for each VPS yo
 
 # Setup
 
-For the first time you execute it, creates a default directory and empty configuration.
+First time you run, creates a default directory and an empty configuration.
 
 **~/.kiwi/config**
 
