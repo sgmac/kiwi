@@ -13,5 +13,6 @@ func main() {
 	app.Name = "kiwi"
 	app.Usage = Usage
 	app.Commands = commands()
+	app.Version = "0.1.0"
 	app.Run(os.Args)
 }
