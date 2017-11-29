@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"text/tabwriter"
 
 	"github.com/Sirupsen/logrus"
 	"github.com/sgmac/bandwagon"
@@ -169,9 +170,11 @@ func prettyOutput(v interface{}) {
 
 	case *bandwagon.InfoVPS:
 		info := v.(*bandwagon.InfoVPS)
-		header = "VIRTUALIZATION\tHOSTNAME\tOS\t\t\t\tIP"
-		fmt.Fprintf(os.Stdout, "%s\n", header)
-		fmt.Fprintf(os.Stdout, "%s\t\t%s\t\t%s\t\t%s\n", info.VMType, info.Hostname, info.OS, info.IPAddresses)
+		w := tabwriter.NewWriter(os.Stdout, 40, 8, 0, ' ', 0)
+		header = "VIRTUALIZATION\tHOSTNAME\tOS\tIP"
+		fmt.Fprintf(w, "%s\n", header)
+		fmt.Fprintf(w, "%s\t%s\t%s\t%s\n", info.VMType, info.Hostname, info.OS, info.IPAddresses)
+		w.Flush()
 	default:
 		_ = t
 	}
